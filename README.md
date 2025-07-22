@@ -1,21 +1,17 @@
 # air_quality_prediction
 ML Project for YAP470
-Projem 3 Train + 3 Test = 6 dosyadan oluşmakta.
+Projem 3 Train + 1 Test = 4 dosyadan oluşmakta.
 
 Train için 3 farklı ülkenin Air Quality verisini kullandım ve bunları farklı dosyalar olarak kaydettim.
 
 Train için; 1.Türkiye verisi için hazırlanmış 1 gün sonrasını tahmin eden bir model, 2.Finlandiya, 3.Avustralya için ve her birinde xgboost, random forest, multi layer perceptron, knn olmak üzere 4 machine learning tekniği kullanıldı.
 
-Test için; aynı şekilde TR, FI ve AU ülkeleri için model tesi yapıldı, her biri için RMSE, MAE, R² Skoru doğrulama yöntemleri kullanıldı.
+Test için; aynı şekilde TR, FI ve AU ülkeleri için model tesi yapıldı, her biri için RMSE, MAE, R² Skoru doğrulama yöntemleri kullanıldı, bunlar birlikte 1 dosyada yapıldı.
 
 Not: 5 yıl train için kullanıldı 2 yıl test için
 
-## Klasör Yapısı
-
-- **/data/**: Ham, işlenmiş ve öznitelik mühendisliği yapılmış veri setlerini içerir.
-- **/notebooks/**: Projenin çalıştırılabilir Jupyter Notebook dosyalarını içerir.
-
-### 1. Eğitim Notebook'ları (`tr.ipynb`, `fi.ipynb`, `au.ipynb`)
+Train dosyaları: tr.ipynb, au.ipynb, fi.ipynb
+Test dosyası: test_all_models.ipynb
 
 - **Açıklama:** Bu notebook'ların her biri, ilgili ülkenin verisini kullanarak tam bir eğitim akışı gerçekleştirir. Bu akış şu adımları içerir:
     1.  Ham veriyi okuma ve ön işleme (birim dönüşümü, pivotlama).
