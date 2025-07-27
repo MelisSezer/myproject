@@ -2,21 +2,17 @@
 ML Project for YAP470
 Projem 3 Train + 1 Test = 4 dosyadan oluşmakta.
 
-Train için 3 farklı ülkenin Air Quality verisini kullandım ve bunları farklı dosyalar olarak kaydettim.
+Train için 3 farklı ülkenin Air Quality verisini kullandım ve bunları farklı dosyalar olarak kaydettim. Test için de 1 ortak dosyam var. Train dosyaları: tr.ipynb, au.ipynb, fi.ipynb Test dosyası: test_all_models.ipynb
 
-Train için; 1.Türkiye verisi için hazırlanmış 1 gün sonrasını tahmin eden bir model, 2.Finlandiya, 3.Avustralya için ve her birinde xgboost, random forest, multi layer perceptron, knn olmak üzere 4 machine learning tekniği kullanıldı.
+Bu projenin temel amacı, OpenAQ API'sinden temin edilen 7 yıllık zaman serisi verilerini kullanarak **Türkiye (TR)**, **Finlandiya (FI)** ve **Avustralya (AU)** için 6 temel hava kirleticisinin (`CO`, `NO2`, `O3`, `PM10`, `PM25`, `SO2`) **1 gün sonraki** seviyelerini tahmin etmektir.
 
-Test için; aynı şekilde TR, FI ve AU ülkeleri için model tesi yapıldı, her biri için RMSE, MAE, R² Skoru doğrulama yöntemleri kullanıldı, bunlar birlikte 1 dosyada yapıldı.
+Proje kapsamında, bu tahmin problemini çözmek için iki ana yöntem geliştirilmiş ve karşılaştırılmıştır:
+1.  **Yöntem 1:** Kapsamlı öznitelik mühendisliğine dayalı **Klasik Makine Öğrenmesi** modelleri (XGBoost, Random Forest, MLP, KNN).
+2.  **Yöntem 2:** Verinin sıralı doğasını ve istatistiksel özetlerini birleştiren **Hibrit Derin Öğrenme** modeli RNN-LSTM.
 
 Not: 5 yıl train için kullanıldı 2 yıl test için
 
-Train dosyaları: tr.ipynb, au.ipynb, fi.ipynb
-Test dosyası: test_all_models.ipynb
 
-- **Açıklama:** Bu notebook'ların her biri, ilgili ülkenin verisini kullanarak tam bir eğitim akışı gerçekleştirir. Bu akış şu adımları içerir:
-    1.  Ham veriyi okuma ve ön işleme (birim dönüşümü, pivotlama).
-    2.  Öznitelik mühendisliği (aykırı değer yönetimi, log dönüşümü, lag/rolling özellikler).
-    3.  Tüm modellerin (XGBoost, RF, MLP, KNN) hiperparametre optimizasyonu.
-    4.  Final modellerin eğitilmesi ve test için gerekli tüm nesnelerin (`model.pkl`, `scaler.pkl`, `selector.pkl`, `X_test.csv`, `y_test.csv`) diske kaydedilmesi.
-- **Nasıl Çalıştırılır:** tr.ipynbi, fi.ipynb ve au.ipynb bu 3 train dosyası ile 3 tane engineered veri seti aynı dosya yoluna koyulduktan sonra modellerin sadece 4. blok yani training blokları çalıştırılır sonrasında test_all_models dosyası çalıştırılır sonuçlar otomatik olarak indiriliyor.
-- Not: Hocam normlade çok daha erken bitmişti projem fakat githuba yükleme kısmı çok uğraştırdı ve tam olmadı çünkü çok fazla model .pkl dosyam var ve bazılarının boyutu bütük github kabul etmedi ama train uzun sürmüyor engineered dosyaları yükledim zaten total 5-10dk arasında bitiyor. pkl dosyalarınıda yükledim fakat karışık ve küçültülmüş şekilde notebook dosyasının içinde
+
+- **Açıklama:** Final_kodlar klasöründe 4 kod dosyam var geri kalan 500e yakın tüm proje çıktıları (eğitilmiş modeller, test verileri, sonuç raporları vb.) google drivedadır. Çünkü github bu kadar fazla dosyayı ve büyük boyutları kabul etmiyor.
+- **Nasıl Çalıştırılır:** tr.ipynbi, fi.ipynb ve au.ipynb bu 3 train dosyası ile test_all_models.ipynb test dosyası aynı klasöre konur drivedan indirilenler de aynı dosyaya konur ve test dosyası çalıştırılır.
